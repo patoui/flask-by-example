@@ -4,6 +4,7 @@ import operator
 import re
 import nltk
 import json
+import config
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from stop_words import stops
@@ -15,7 +16,7 @@ from worker import conn
 from flask import jsonify
 
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.from_object(eval(os.getenv('APP_SETTINGS')))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
